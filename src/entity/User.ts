@@ -1,3 +1,4 @@
+// referencia da nossa tabela no banco de dados
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
@@ -17,7 +18,7 @@ class User {
 
     @CreateDateColumn()
     created_at: Date;
-   
+
     @UpdateDateColumn()
     updayed_at: Date;
 
