@@ -7,8 +7,9 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: true,
     entities: [],
-    subscribers: [],
-    migrations: [],
+    subscribers: [/*...*/],
+    migrations: ["src/migration/*.js"],
+    migrationsTableName: "custom_migration_table",
 })
 
 AppDataSource.initialize()
