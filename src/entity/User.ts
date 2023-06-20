@@ -20,7 +20,7 @@ class User {
     created_at: Date;
 
     @UpdateDateColumn()
-    updayed_at: Date;
+    updated_at: Date;
 
     constructor() {
         // se estiver sendo criado um usuario

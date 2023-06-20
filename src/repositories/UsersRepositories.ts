@@ -2,12 +2,7 @@
 // Ficara entre a nossa entidade e o banco de dados
 // ela tera todos os metodos de manipulacao do nosso BD
 
-import { EntityRepository, Repository } from 'typeorm';
-import { User } from '../entity/User';
+import { AppDataSource } from "../data-source";
+import { User } from "../entity/User";
 
-@EntityRepository()
-class UsersRepositories extends Repository<User> {
-
-}
-
-export { UsersRepositories };
+export const UsersRepositories = AppDataSource.getRepository(User);

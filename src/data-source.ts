@@ -3,10 +3,10 @@ import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
     type: "sqlite",
-    database: "valorizadb",
+    database: "valorizadb.sqlite",
     synchronize: true,
     logging: true,
-    entities: [],
+    entities: [`${__dirname}/**/entities/*.{ts, js}`],
     subscribers: [/*...*/],
     migrations: ["src/migration/*.js"],
     migrationsTableName: "custom_migration_table",
