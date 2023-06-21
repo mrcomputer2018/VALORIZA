@@ -5,16 +5,19 @@ import { UsersRepositories } from "../repositories/UsersRepositories";
 interface IUserRequest {
   name: string;
   email: string;
+  password: string;
   admin?: boolean;
 }
 
 class CreateUserService {
-  async execute({ name, email, admin }: IUserRequest) {
-
-    console.log("Email", email);
+  async execute({ name, email, password, admin }: IUserRequest) {
 
     if (!email) {
-      throw new Error("Email incorrect");
+      throw new Error('Email incorrect');
+    }
+
+    if(!password) {
+        throw new Error('Password incorrect');
     }
 
     const userAlreadyExists = await UsersRepositories.findOneBy({
@@ -22,12 +25,13 @@ class CreateUserService {
     });
 
     if (userAlreadyExists) {
-      throw new Error("User already exists");
+      throw new Error('User already exists');
     }
 
     const user = UsersRepositories.create({
       name,
       email,
+      password,
       admin,
     });
 

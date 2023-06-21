@@ -13,6 +13,9 @@ class User {
     @Column({ type: 'varchar' })
     email: string;
 
+    @Column({ type: 'varchar' })
+    password: string;
+
     @Column({ type: 'boolean' })
     admin: boolean;
 
