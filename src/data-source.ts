@@ -1,20 +1,19 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import { User } from './entity/User';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const port = process.env.DB_PORT as number | undefined;
 
 export const AppDataSource = new DataSource({
-    type: "sqlite",
-    database: "valorizadb.sqlite",
-    synchronize: true,
-    logging: true,
-    entities: [`${__dirname}/**/entities/*.{ts, js}`],
-    subscribers: [/*...*/],
-    migrations: ["src/migration/*.js"],
-    migrationsTableName: "custom_migration_table",
+    type: "postgres",
+    host: process.env.DB_HOST,
+    port: port,
+    username:  process.env.DB_USERNAME,
+    password:  process.env.DB_PASSWORD,
+    database:  process.env.DB_DATABASE,
+    entities: [User],
+    migrations: [`${__dirname}/**/migrations/*.{ts, js}`],
 })
-
-AppDataSource.initialize()
-    .then(() => {
-        // here you can start to work with your database
-        console.log('Database online');
-    })
-    .catch((error) => console.log(error))

@@ -4,22 +4,22 @@ import { v4 as uuid } from 'uuid';
 
 @Entity('users')
 class User {
-    @PrimaryColumn()
+    @PrimaryColumn({ type: 'uuid' })
     readonly id: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     name: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     email: string;
 
-    @Column()
+    @Column({ type: 'boolean' })
     admin: boolean;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: 'timestamp', default: 'now()' })
     created_at: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ type: 'timestamp', default: 'now()' })
     updated_at: Date;
 
     constructor() {
