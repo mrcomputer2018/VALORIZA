@@ -1,7 +1,7 @@
 // serao feitas as validacoes e verificacoes da aplicacao
 // - SERVER.TS -> CONTROLLERS -> SERVICES -> REPOSITORIES -> BD
-import { UsersRepositories } from "../repositories/UsersRepositories";
-
+import { UsersRepositories } from '../repositories/UsersRepositories';
+import { hash } from 'bcryptjs';
 interface IUserRequest {
   name: string;
   email: string;
@@ -20,6 +20,8 @@ class CreateUserService {
         throw new Error('Password incorrect');
     }
 
+    const passwordHash = await hash(password, 8);
+
     const userAlreadyExists = await UsersRepositories.findOneBy({
       email: email,
     });
@@ -31,7 +33,7 @@ class CreateUserService {
     const user = UsersRepositories.create({
       name,
       email,
-      password,
+      password: passwordHash,
       admin,
     });
 
