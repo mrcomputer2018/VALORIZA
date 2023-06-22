@@ -3,6 +3,8 @@ import { CreateTagService } from "../services/CreateTagService";
 
 class CreateTagController {
     async handle(req: Request, res: Response) {
+        console.log(`>>> rotating tag - post ${req.url}`);
+
         const { name } = req.body;
 
         const createTagService = new CreateTagService();
