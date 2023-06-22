@@ -1,5 +1,4 @@
 import { TagsRepositories } from "../repositories/TagsRepositories";
-import { UsersRepositories } from "../repositories/UsersRepositories";
 
 interface ITagRequest {
     name: string;
@@ -23,7 +22,7 @@ class CreateTagService {
 
         await TagsRepositories.save(tag);
 
-        return tag; 
+        return tag;
     }
 }
 
