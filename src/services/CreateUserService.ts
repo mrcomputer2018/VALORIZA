@@ -12,6 +12,10 @@ interface IUserRequest {
 class CreateUserService {
   async execute({ name, email, password, admin }: IUserRequest) {
 
+    if (!admin) {
+        throw new Error('You must.');
+    }
+
     if (!email) {
       throw new Error('Email incorrect');
     }
