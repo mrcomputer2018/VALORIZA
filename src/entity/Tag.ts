@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Compliment } from "./Compliment";
 
 @ Entity('tags')
 class Tag {
@@ -14,6 +15,9 @@ class Tag {
 
     @UpdateDateColumn({ type: 'timestamp', default: 'now()'})
     updated_at: Date
+
+    @OneToMany(() => Compliment, (compliment: { tag: string; }) => compliment.tag)
+    compliments: Compliment[]
 
     constructor() {
         if (!this.id) {

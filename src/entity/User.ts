@@ -1,6 +1,7 @@
 // referencia da nossa tabela no banco de dados
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Compliment } from './Compliment';
 
 @Entity('users')
 class User {
@@ -24,6 +25,9 @@ class User {
 
     @UpdateDateColumn({ type: 'timestamp', default: 'now()' })
     updated_at: Date;
+
+    @OneToMany(() => Compliment, (compliment: {userReceiver: string; }) => compliment.userReceiver)
+    compliments: Compliment[]
 
     constructor() {
         // se estiver sendo criado um usuario
