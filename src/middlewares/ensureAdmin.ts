@@ -1,14 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
 
-export function ensureAdmin(
+import { UsersRepositories } from './../repositories/UsersRepositories';
+
+export async function ensureAdmin(
     req: Request,
     res: Response,
     next: NextFunction
     ) {
-    // verificar se o usuario e admin
-    const admin = true;
+    // pegando o id do usuario de request
+    const { user_id } = req;
 
-    if (admin) {
+    const user = await UsersRepositories.findOneBy({ id: user_id });
+
+    // verificar se o usuario e admin
+    /* const admin = true; */
+
+    if (user?.admin) {
         return next();
     }
 

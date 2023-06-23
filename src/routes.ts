@@ -20,6 +20,6 @@ router.post('/login', authenticateUserController.handle);
 // Tags
 router.post('/tags', ensureAuthenticated, ensureAdmin, createTagController.handle);
 // compliments
-router.post('/compliments', createComplimentController.handle);
+router.post('/compliments', ensureAuthenticated, createComplimentController.handle);
 
 export { router };
